@@ -17,7 +17,8 @@ public class Transaction {
     @Id
     private long id;
     private BigDecimal amount;
-    private Date date;
+    private BigDecimal currentBalance;
+    private Date date = new Date();
     private TransactionType transactionType;
 
     @ManyToOne
@@ -26,10 +27,10 @@ public class Transaction {
     public Transaction() {
     }
 
-    public Transaction(BigDecimal amount, Date date, TransactionType transactionType, User user) {
+    public Transaction(BigDecimal amount, TransactionType transactionType, User user) {
         this.amount = amount;
-        this.date = date;
         this.transactionType = transactionType;
+        this.currentBalance = user.getBalance();
         this.user = user;
     }
 

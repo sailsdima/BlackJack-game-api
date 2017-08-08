@@ -15,27 +15,50 @@ import java.util.*;
 public class GameEngine {
 
 
-    public GameInfo startGame(Game game){
+    public GameInfo startGame(Game game) {
 
-        GameInfo gameStatus = new GameInfo(game);
+        GameInfo gameInfo = new GameInfo(game);
 
-        if(game.getUser().getBalance().compareTo(game.getBet()) > 0){
-            gameStatus.getGame().setStatus(Status.CANCELLED);
-            return gameStatus;
+        if (game.getUser().getBalance().compareTo(game.getBet()) < 0) {
+            gameInfo.getGame().setStatus(Status.CANCELLED);
+            return gameInfo;
         }
 
-        gameStatus.setDeck(getShuffledDeck());
-        gameStatus.addPlayerCard(gameStatus.getDeck().poll());
-        gameStatus.addPlayerCard(gameStatus.getDeck().poll());
+        gameInfo.setDeck(getShuffledDeck());
+        gameInfo.addPlayerCard(gameInfo.getDeck().poll());
+        gameInfo.addPlayerCard(gameInfo.getDeck().poll());
 
-        gameStatus.addDealerCard(gameStatus.getDeck().poll());
-        gameStatus.setHiddenCard(gameStatus.getDeck().poll());
+        gameInfo.addDealerCard(gameInfo.getDeck().poll());
+        gameInfo.setHiddenCard(gameInfo.getDeck().poll());
 
-        return gameStatus;
+        return gameInfo;
+    }
+
+    public GameInfo makeHit(GameInfo gameInfo) {
+        checkGameIsInProgress(gameInfo);
+        gameInfo.addPlayerCard(gameInfo.getDeck().poll());
+
+        return gameInfo;
+    }
+
+    public GameInfo addCardsToDealer(GameInfo gameInfo){
+        checkGameIsInProgress(gameInfo);
+        gameInfo.showHiddenCard();
+        while(gameInfo.getDealerPoints() < 18){
+            gameInfo.addDealerCard(gameInfo.getDeck().poll());
+        }
+        return gameInfo;
     }
 
 
-    private static List<Card> getDeck(){
+    private void checkGameIsInProgress(GameInfo gameInfo) {
+        //todo
+        if(!gameInfo.getGame().getStatus().equals(Status.IN_PROGRESS))
+            throw new UnsupportedOperationException("Cannot make changes to this game (id: " + gameInfo.getGame().getId() +
+                    "). Check the game`s status.");
+    }
+
+    private static List<Card> getDeck() {
         List<Card> deck = new ArrayList<>();
         int id = 0;
         for (Rank rank : Rank.values())
@@ -50,7 +73,15 @@ public class GameEngine {
         return new ArrayDeque<>(deck);
     }
 
-    public static Card getCardById(int id){
+    public static Deque<Card> getShuffledDeckWithoutCards(List<Card> usedCards) {
+        List<Card> deck = getDeck();
+        deck.removeAll(usedCards);
+        Collections.shuffle(deck);
+        return new ArrayDeque<>(deck);
+    }
+
+    public static Card getCardById(int id) {
         return getDeck().stream().filter(card -> card.getId() == id).findFirst().orElse(null);
     }
+
 }

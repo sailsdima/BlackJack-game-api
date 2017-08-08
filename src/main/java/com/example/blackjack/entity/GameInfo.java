@@ -8,21 +8,22 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by dima on 07.08.17.
  */
 public class GameInfo {
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    private long id;
-
     private Game game;
+
+    public int getPlayerPoints() {
+        return getPoints(playerCards);
+    }
+    public int getDealerPoints() {
+        return getPoints(dealerCards);
+    }
+
     private List<Card> playerCards = new ArrayList<>();
     private List<Card> dealerCards = new ArrayList<>();
 
@@ -35,9 +36,15 @@ public class GameInfo {
 
     public GameInfo(Game game) {
         this.game = game;
-        fillDealerCards(game.getDealerCardIds());
+        int [] a = game.getDealerCardIds();
+        fillDealerCards(a);
         fillPlayerCards(game.getPlayerCardIds());
         hiddenCard = GameEngine.getCardById(game.getHiddenCardId());
+        List<Card> usedCards = new ArrayList<>(playerCards);
+        usedCards.addAll(dealerCards);
+        if (hiddenCard != null)
+            usedCards.add(hiddenCard);
+        deck = GameEngine.getShuffledDeckWithoutCards(usedCards);
     }
 
     private void fillPlayerCards(int[] cardIds) {
@@ -50,14 +57,6 @@ public class GameInfo {
         for (int id : cardIds) {
             dealerCards.add(GameEngine.getCardById(id));
         }
-    }
-
-    public int getPlayerPoints() {
-        return getPoints(playerCards);
-    }
-
-    public int getDealerPoints() {
-        return getPoints(dealerCards);
     }
 
     private int getPoints(List<Card> cards) {
@@ -128,4 +127,5 @@ public class GameInfo {
     public void setDealerCards(List<Card> dealerCards) {
         this.dealerCards = dealerCards;
     }
+
 }

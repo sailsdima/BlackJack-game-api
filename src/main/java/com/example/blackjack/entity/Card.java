@@ -3,9 +3,6 @@ package com.example.blackjack.entity;
 import com.example.blackjack.enumeration.Rank;
 import com.example.blackjack.enumeration.Suit;
 
-import javax.persistence.Entity;
-import java.util.*;
-
 /**
  * Created by dima on 06.08.17.
  */
@@ -15,11 +12,13 @@ public class Card {
 
     private Rank rank;
     private Suit suit;
+    private int value;
 
     public Card(int id, Rank rank, Suit suit) {
         this.id = id;
         this.rank = rank;
         this.suit = suit;
+        this.value = rank.getValue();
     }
 
     public int getId() {
@@ -32,6 +31,10 @@ public class Card {
 
     public Suit getSuit() {
         return suit;
+    }
+
+    public int getValue() {
+        return value;
     }
 
     @Override

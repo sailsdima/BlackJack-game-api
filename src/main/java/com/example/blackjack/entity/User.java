@@ -22,10 +22,19 @@ public class User {
     private String name;
 
     private BigDecimal balance = new BigDecimal(0);
+    private BigDecimal drawBalance = new BigDecimal(0);
 
     public User() {
     }
 
+    public void transferBetToDrawBalance(BigDecimal bet){
+        balance = balance.subtract(bet);
+        drawBalance = drawBalance.add(bet);
+    }
+
+    public void decreaseDrawBalance(BigDecimal money){
+        drawBalance = drawBalance.subtract(money);
+    }
 
     public long getId() {
         return id;
@@ -53,5 +62,13 @@ public class User {
 
     public void replenishBalance(BigDecimal amount) {
         balance = balance.add(amount);
+    }
+
+    public BigDecimal getDrawBalance() {
+        return drawBalance;
+    }
+
+    public void setDrawBalance(BigDecimal drawBalance) {
+        this.drawBalance = drawBalance;
     }
 }

@@ -34,10 +34,8 @@ public class TransactionController {
     @RequestMapping(method = RequestMethod.POST, value = "/users/{userId}/transactions")
     private void addTransaction(@RequestBody Transaction transaction, @PathVariable("userId") long userId) {
         User user = userService.findUser(userId);
-        System.out.println(user);
         user.replenishBalance(transaction.getAmount());
         transaction.setUser(user);
-        transaction.setDate(new Date());
         transaction.setType(TransactionType.REPLENISHMENT);
         transactionService.addTransaction(transaction);
         userService.updateUser(user);
