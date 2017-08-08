@@ -1,8 +1,9 @@
 ## BlackJack-game-api
 
-### This is api for well-known card game BlackJack.
+### This is API for well-known card game BlackJack.
 
-### User (/users)
+## User (/users)
+
 * GET /users returns a list of all users
 #### Command: GET /users
 server response example:
@@ -88,7 +89,7 @@ server response example:
 1
 
 
-### Transaction</b> (/users/{userId}/transactions)
+## Transaction (/users/{userId}/transactions)
 
 #### GET /users/{userId}/transactions returns all transactions of a user with id = {userId}
 
@@ -154,7 +155,7 @@ server response example:
 #### DELETE /users/{userId}/transactions/{transactionId} removes transaction with id = {transactionId} of a user with id = {userId}. Returns 1 if successfull and 0 if not.
 
 
-### Game (/users/{userId}/games)
+## Game (/users/{userId}/games)
 
 #### GET /users/{userId}/games returns all games of a user with id = {userId}
 
