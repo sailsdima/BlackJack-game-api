@@ -4,8 +4,8 @@
 
 ## User (/users)
 
-* GET /users returns a list of all users
-#### Command: GET /users
+* ### GET /users returns a list of all users
+ Command: GET /users
 server response example:
 ```
 [
@@ -30,7 +30,7 @@ server response example:
 ]
 ```
 #### GET /users/{id} returns a user with id = {id}.
-#### Command: GET /users/1
+ Command: GET /users/1
 server response example:
 
 ```
