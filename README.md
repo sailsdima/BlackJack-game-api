@@ -69,10 +69,11 @@ server response example:
 }
 ```
 
-#### PUT /users/{id} changes the name of user with id = {id}. 
-* New name is taken from requestBody.
-
+* ### PUT /users/{id} changes the name of user with id = {id}. 
+ New name is taken from requestBody.
+ 
 Command: PUT /users/4
+
 RequestBody example:
 ```
 {
@@ -88,17 +89,18 @@ server response example:
     "drawBalance": 0
 }
 ```
-
-#### DELETE /users/{id} removes user with id = {id} from db. Returns 1 if successfull and 0 if not.
+* ### DELETE /users/{id} removes user with id = {id} from db. Returns 1 if successfull and 0 if not.
 
 Command /users/4
-server response example:
-1
 
+server response example:
+```
+1
+```
 
 ## Transaction (/users/{userId}/transactions)
 
-#### GET /users/{userId}/transactions returns all transactions of a user with id = {userId}
+* ###  GET /users/{userId}/transactions returns all transactions of a user with id = {userId}
 
 Command: /users/1/transactions
 
@@ -133,15 +135,19 @@ server response example:
     }
 ]
 ```
-#### GET /users/{userId}/transactions/{transactionId} returns transaction with id = {transactionId} of a user with id = {userId}. If user doesn't have this transaction, nothing is returned.
+* ###  GET /users/{userId}/transactions/{transactionId} returns transaction with id = {transactionId} of a user with id = {userId}. If user doesn't have this transaction, nothing is returned.
 
-#### POST /users/{userId}/transactions/ replenishes user's balance with amount from requestBody.
+
+* ###  POST /users/{userId}/transactions/ replenishes user's balance with amount from requestBody.
+
 Command: POST /users/1/transactions/
+
 RequestBody example:
 ```
 {
     "amount" : 1000
 }
+
 ```
 server response example:
 ```
@@ -159,14 +165,20 @@ server response example:
     }
 }
 ```
-#### DELETE /users/{userId}/transactions/{transactionId} removes transaction with id = {transactionId} of a user with id = {userId}. Returns 1 if successfull and 0 if not.
+
+
+* ###  DELETE /users/{userId}/transactions/{transactionId} removes transaction with id = {transactionId} of a user with id = {userId}. Returns 1 if successfull and 0 if not.
+
 
 
 ## Game (/users/{userId}/games)
 
-#### GET /users/{userId}/games returns all games of a user with id = {userId}
+
+* ###  GET /users/{userId}/games returns all games of a user with id = {userId}
+
 
 Command: GET /users/1/games/
+
 
 server response example:
 ```
@@ -262,16 +274,19 @@ server response example:
 ]
 ```
 
-#### GET /users/{userId}/games/active returns all active games of a user with id = {userId}
-
-#### GET /users/{userId}/games/finished returns all finished games of a user with id = {userId}
-
-#### GET /users/{userId}/games/{gameId} returns a game with id = {gameId} of a user with id = {userId}. If user doesn't have game with such id, nothing is returned.
+* ###  GET /users/{userId}/games/active returns all active games of a user with id = {userId}
 
 
-#### POST /users/{userId}/games creates a new game, starts it and returns. Takes bet from requestBody.
+* ###  GET /users/{userId}/games/finished returns all finished games of a user with id = {userId}
+
+* ###  GET /users/{userId}/games/{gameId} returns a game with id = {gameId} of a user with id = {userId}. If user doesn't have game with such id, nothing is returned.
+
+
+* ###  POST /users/{userId}/games creates a new game, starts it and returns. Takes bet from requestBody.
+
 
 Command: POST /users/1/games/
+
 
 RequestBody example:
 ```
@@ -323,9 +338,10 @@ server response example:
 ```
 
 
-#### PUT /users/{userId}/games/{gameId}/stand  makes an action Stand for a player and returns an updated game.
+* ###  PUT /users/{userId}/games/{gameId}/stand  makes an action Stand for a player and returns an updated game.
 
 Command: PUT /users/1/games/7/stand
+
 ```
 {
     "game": {
@@ -385,4 +401,5 @@ Command: PUT /users/1/games/7/stand
 }
 ```
 
-#### PUT /users/{userId}/games/{gameId}/hit  makes an action Hit for a player and returns an updated game.
+
+* ###  PUT /users/{userId}/games/{gameId}/hit  makes an action Hit for a player and returns an updated game.
