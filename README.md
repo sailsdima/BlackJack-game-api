@@ -6,6 +6,7 @@
 * GET /users returns a list of all users
 #### Command: GET /users
 server response example:
+```
 [
     {
         "id": 1,
@@ -26,50 +27,59 @@ server response example:
         "drawBalance": 0
     }
 ]
-
+```
 #### GET /users/{id} returns a user with id = {id}.
 #### Command: GET /users/1
 server response example:
+
+```
 {
     "id": 1,
     "name": "Dima",
     "balance": 13800,
     "drawBalance": 0
 }
-
+```
 
 #### POST /users  adds a new user from request body and returns added user from db.
 Command: POST /users
 RequestBody example:
+```
 {
     "name" : "Alexey"
 }
+```
+
 
 server response example:
+```
 {
     "id": 4,
     "name": "Alexey",
     "balance": 0,
     "drawBalance": 0
 }
+```
 
 #### PUT /users/{id} changes the name of user with id = {id}. 
 * New name is taken from requestBody.
 
 Command: PUT /users/4
 RequestBody example:
+```
 {
     "name" : "Alexey"
 }
-
+```
 server response example:
+```
 {
     "id": 4,
     "name": "Alexey",
     "balance": 0,
     "drawBalance": 0
 }
-
+```
 
 #### DELETE /users/{id} removes user with id = {id} from db. Returns 1 if successfull and 0 if not.
 
