@@ -5,7 +5,9 @@
 ## User (/users)
 
 * ### GET /users returns a list of all users
+
  Command: GET /users
+ 
 server response example:
 ```
 [
@@ -29,8 +31,11 @@ server response example:
     }
 ]
 ```
-#### GET /users/{id} returns a user with id = {id}.
- Command: GET /users/1
+
+* ### GET /users/{id} returns a user with id = {id}.
+
+Command: GET /users/1
+
 server response example:
 
 ```
@@ -42,8 +47,10 @@ server response example:
 }
 ```
 
-#### POST /users  adds a new user from request body and returns added user from db.
+* ### POST /users  adds a new user from request body and returns added user from db.
+
 Command: POST /users
+
 RequestBody example:
 ```
 {
