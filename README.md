@@ -95,6 +95,7 @@ server response example:
 Command: /users/1/transactions
 
 server response example:
+```
 [
     {
         "id": 1,
@@ -123,17 +124,19 @@ server response example:
         }
     }
 ]
-
+```
 #### GET /users/{userId}/transactions/{transactionId} returns transaction with id = {transactionId} of a user with id = {userId}. If user doesn't have this transaction, nothing is returned.
 
 #### POST /users/{userId}/transactions/ replenishes user's balance with amount from requestBody.
 Command: POST /users/1/transactions/
 RequestBody example:
+```
 {
     "amount" : 1000
 }
-
+```
 server response example:
+```
 {
     "id": 6,
     "amount": 1000,
@@ -147,7 +150,7 @@ server response example:
         "drawBalance": 0
     }
 }
-
+```
 #### DELETE /users/{userId}/transactions/{transactionId} removes transaction with id = {transactionId} of a user with id = {userId}. Returns 1 if successfull and 0 if not.
 
 
@@ -158,6 +161,7 @@ server response example:
 Command: GET /users/1/games/
 
 server response example:
+```
 [
     {
         "game": {
@@ -248,7 +252,7 @@ server response example:
         "playerPoints": 19
     }
 ]
-
+```
 
 #### GET /users/{userId}/games/active returns all active games of a user with id = {userId}
 
@@ -262,11 +266,14 @@ server response example:
 Command: POST /users/1/games/
 
 RequestBody example:
+```
 {
     "bet" : 1000
 }
+```
 
 server response example: 
+```
 {
     "game": {
         "id": 7,
@@ -305,12 +312,13 @@ server response example:
     "dealerPoints": 8,
     "playerPoints": 20
 }
-
+```
 
 
 #### PUT /users/{userId}/games/{gameId}/stand  makes an action Stand for a player and returns an updated game.
 
 Command: PUT /users/1/games/7/stand
+```
 {
     "game": {
         "id": 7,
@@ -367,5 +375,6 @@ Command: PUT /users/1/games/7/stand
     "dealerPoints": 20,
     "playerPoints": 20
 }
+```
 
 #### PUT /users/{userId}/games/{gameId}/hit  makes an action Hit for a player and returns an updated game.
