@@ -17,26 +17,30 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public List<User> findAllUsers(){
+    public List<User> findAllUsers() {
         List<User> users = new ArrayList<>();
-        userRepository.findAll().forEach(user -> users.add(user));
+        userRepository.findAll().forEach(users::add);
         return users;
     }
 
-    public User findUser(long id){
+    public User findUser(long id) {
         return userRepository.findOne(id);
     }
 
-    public void addUser(User user){
+    public User addUser(User user) {
         userRepository.save(user);
+        return user;
     }
 
-    public void updateUser(User user){
-        userRepository.save(user);
+    public User updateUser(User user) {
+        User oldUser = findUser(user.getId());
+        oldUser.setName(user.getName());
+        userRepository.save(oldUser);
+        return oldUser;
     }
 
-    public void removeUser(long id){
-        userRepository.delete(id);
+    public Long removeUser(long id) {
+        return userRepository.deleteById(id);
     }
 
 }

@@ -1,9 +1,9 @@
 package com.example.blackjack.repository;
 
 import com.example.blackjack.entity.Transaction;
-import com.example.blackjack.entity.User;
 import org.springframework.data.repository.CrudRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -12,5 +12,8 @@ import java.util.List;
 public interface TransactionRepository extends CrudRepository<Transaction,Long> {
 
     List<Transaction> findByUserId(long id);
+    Transaction findByUserIdAndId(long userId, long transactionId);
+    @Transactional
+    Long deleteByUserIdAndId(long userId, long transactionId);
 
 }

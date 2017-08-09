@@ -5,9 +5,6 @@ import com.example.blackjack.engine.GameEngine;
 import com.example.blackjack.enumeration.Rank;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.util.*;
 
 /**
@@ -16,7 +13,6 @@ import java.util.*;
 public class GameInfo {
 
     private Game game;
-
     public int getPlayerPoints() {
         return getPoints(playerCards);
     }
@@ -24,14 +20,14 @@ public class GameInfo {
         return getPoints(dealerCards);
     }
 
-    private List<Card> playerCards = new ArrayList<>();
-    private List<Card> dealerCards = new ArrayList<>();
 
     @JsonIgnore
     private Card hiddenCard;
 
     @JsonIgnore
     private Deque<Card> deck;
+    private List<Card> playerCards = new ArrayList<>();
+    private List<Card> dealerCards = new ArrayList<>();
 
 
     public GameInfo(Game game) {
@@ -58,6 +54,8 @@ public class GameInfo {
             dealerCards.add(GameEngine.getCardById(id));
         }
     }
+
+
 
     private int getPoints(List<Card> cards) {
         int points = 0;

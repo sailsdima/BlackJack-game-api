@@ -19,11 +19,6 @@ public class GameEngine {
 
         GameInfo gameInfo = new GameInfo(game);
 
-        if (game.getUser().getBalance().compareTo(game.getBet()) < 0) {
-            gameInfo.getGame().setStatus(Status.CANCELLED);
-            return gameInfo;
-        }
-
         gameInfo.setDeck(getShuffledDeck());
         gameInfo.addPlayerCard(gameInfo.getDeck().poll());
         gameInfo.addPlayerCard(gameInfo.getDeck().poll());

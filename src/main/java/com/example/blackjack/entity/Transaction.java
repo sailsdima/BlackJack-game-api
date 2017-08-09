@@ -34,6 +34,14 @@ public class Transaction {
         this.user = user;
     }
 
+    public BigDecimal getCurrentBalance() {
+        return currentBalance;
+    }
+
+    public void setCurrentBalance(BigDecimal currentBalance) {
+        this.currentBalance = currentBalance;
+    }
+
     public long getId() {
         return id;
     }

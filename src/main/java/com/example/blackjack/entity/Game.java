@@ -1,7 +1,6 @@
 package com.example.blackjack.entity;
 
 import com.example.blackjack.enumeration.Status;
-import com.example.blackjack.enumeration.TransactionType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;

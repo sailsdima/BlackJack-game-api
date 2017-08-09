@@ -6,7 +6,7 @@ package com.example.blackjack.enumeration;
 public enum Status {
 
     IN_PROGRESS("In progress"), DRAW("Draw"), DEALER_WON("Dealer won"),
-    PLAYER_WON("Player won"), CANCELLED("Cancelled");
+    PLAYER_WON("User won"), CANCELLED("Cancelled");
 
     String status;
 

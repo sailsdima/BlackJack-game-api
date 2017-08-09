@@ -1,7 +1,6 @@
 package com.example.blackjack.service;
 
 import com.example.blackjack.entity.Transaction;
-import com.example.blackjack.entity.User;
 import com.example.blackjack.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,22 +17,22 @@ public class TransactionService {
     @Autowired
     private TransactionRepository transactionRepository;
 
-    public List<Transaction> findTransactionsByUserId(long userId){
+    public List<Transaction> findTransactionsByUserId(long userId) {
         List<Transaction> transactions = new ArrayList<>();
-        transactionRepository.findByUserId(userId).forEach(user -> transactions.add(user));
+        transactions.addAll(transactionRepository.findByUserId(userId));
         return transactions;
     }
 
-    public Transaction findTransaction(long id){
-        return transactionRepository.findOne(id);
+    public Transaction findTransaction(long userId, long transactionId) {
+        return transactionRepository.findByUserIdAndId(userId, transactionId);
     }
 
-    public void addTransaction(Transaction transaction){
-        transactionRepository.save(transaction);
+    public Transaction addTransaction(Transaction transaction) {
+        return transactionRepository.save(transaction);
     }
 
-    public void removeTransaction(long id){
-        transactionRepository.delete(id);
+    public Long removeTransaction(long userId, long transactionId) {
+        return transactionRepository.deleteByUserIdAndId(userId, transactionId);
     }
 
 }
